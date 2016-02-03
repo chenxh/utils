@@ -1,9 +1,9 @@
 package com.chencoder.utils;
 
 /**
- * 参考BigDecimal, 可重用的StringBuilder, 节约StringBuilder内部的char[]
+ * 锟轿匡拷BigDecimal, 锟斤拷锟斤拷锟矫碉拷StringBuilder, 锟斤拷约StringBuilder锟节诧拷锟斤拷char[]
  * 
- * 参考下面的示例代码将其保存为ThreadLocal.
+ * 锟轿匡拷锟斤拷锟斤拷锟绞撅拷锟斤拷锟诫将锟戒保锟斤拷为ThreadLocal.
  * 
  * <pre>
  * private static final ThreadLocal<StringBuilderHelper> threadLocalStringBuilderHolder = new ThreadLocal<StringBuilderHelper>() {
@@ -28,9 +28,7 @@ public class StringBuilderHolder {
 		sb = new StringBuilder(capacity);
 	}
 
-	/**
-	 * 重置StringBuilder内部的writerIndex, 而char[]保留不动.
-	 */
+
 	public StringBuilder resetAndGetStringBuilder() {
 		sb.setLength(0);
 		return sb;

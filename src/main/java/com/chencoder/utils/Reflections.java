@@ -11,9 +11,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 
 /**
- * ·´Éä¹¤¾ßÀà.
+ * åå°„å·¥å…·ç±».
  * 
- * Ìá¹©µ÷ÓÃgetter/setter·½·¨, ·ÃÎÊË½ÓĞ±äÁ¿, µ÷ÓÃË½ÓĞ·½·¨, »ñÈ¡·ºĞÍÀàĞÍClass, ±»AOP¹ıµÄÕæÊµÀàµÈ¹¤¾ßº¯Êı.
+ * æä¾›è°ƒç”¨getter/setteræ–¹æ³•, è®¿é—®ç§æœ‰å˜é‡, è°ƒç”¨ç§æœ‰æ–¹æ³•, è·å–æ³›å‹ç±»å‹Class, è¢«AOPè¿‡çš„çœŸå®ç±»ç­‰å·¥å…·å‡½æ•°.
  * 
  * @author calvin
  */
@@ -26,7 +26,7 @@ public class Reflections {
 
 
 	/**
-	 * µ÷ÓÃGetter·½·¨.
+	 * è°ƒç”¨Getteræ–¹æ³•.
 	 */
 	public static Object invokeGetter(Object obj, String propertyName) {
 		String getterMethodName = GETTER_PREFIX + StringUtils.capitalize(propertyName);
@@ -34,7 +34,7 @@ public class Reflections {
 	}
 
 	/**
-	 * µ÷ÓÃSetter·½·¨, ½öÆ¥Åä·½·¨Ãû¡£
+	 * è°ƒç”¨Setteræ–¹æ³•, ä»…åŒ¹é…æ–¹æ³•åã€‚
 	 */
 	public static void invokeSetter(Object obj, String propertyName, Object value) {
 		String setterMethodName = SETTER_PREFIX + StringUtils.capitalize(propertyName);
@@ -42,7 +42,7 @@ public class Reflections {
 	}
 
 	/**
-	 * Ö±½Ó¶ÁÈ¡¶ÔÏóÊôĞÔÖµ, ÎŞÊÓprivate/protectedĞŞÊÎ·û, ²»¾­¹ıgetterº¯Êı.
+	 * ç›´æ¥è¯»å–å¯¹è±¡å±æ€§å€¼, æ— è§†private/protectedä¿®é¥°ç¬¦, ä¸ç»è¿‡getterå‡½æ•°.
 	 */
 	public static Object getFieldValue(final Object obj, final String fieldName) {
 		Field field = getAccessibleField(obj, fieldName);
@@ -55,13 +55,13 @@ public class Reflections {
 		try {
 			result = field.get(obj);
 		} catch (IllegalAccessException e) {
-			//logger.error("²»¿ÉÄÜÅ×³öµÄÒì³£{}", e.getMessage());
+			//logger.error("ä¸å¯èƒ½æŠ›å‡ºçš„å¼‚å¸¸{}", e.getMessage());
 		}
 		return result;
 	}
 
 	/**
-	 * Ö±½ÓÉèÖÃ¶ÔÏóÊôĞÔÖµ, ÎŞÊÓprivate/protectedĞŞÊÎ·û, ²»¾­¹ısetterº¯Êı.
+	 * ç›´æ¥è®¾ç½®å¯¹è±¡å±æ€§å€¼, æ— è§†private/protectedä¿®é¥°ç¬¦, ä¸ç»è¿‡setterå‡½æ•°.
 	 */
 	public static void setFieldValue(final Object obj, final String fieldName, final Object value) {
 		Field field = getAccessibleField(obj, fieldName);
@@ -73,12 +73,12 @@ public class Reflections {
 		try {
 			field.set(obj, value);
 		} catch (IllegalAccessException e) {
-			//logger.error("²»¿ÉÄÜÅ×³öµÄÒì³£:{}", e.getMessage());
+			//logger.error("ä¸å¯èƒ½æŠ›å‡ºçš„å¼‚å¸¸:{}", e.getMessage());
 		}
 	}
 
 	/**
-	 * Ö±½Óµ÷ÓÃ¶ÔÏó·½·¨, ÎŞÊÓprivate/protectedĞŞÊÎ·û. ÓÃÓÚÒ»´ÎĞÔµ÷ÓÃµÄÇé¿ö£¬·ñÔòÓ¦Ê¹ÓÃgetAccessibleMethod()º¯Êı»ñµÃMethodºó·´¸´µ÷ÓÃ. Í¬Ê±Æ¥Åä·½·¨Ãû+²ÎÊıÀàĞÍ£¬
+	 * ç›´æ¥è°ƒç”¨å¯¹è±¡æ–¹æ³•, æ— è§†private/protectedä¿®é¥°ç¬¦. ç”¨äºä¸€æ¬¡æ€§è°ƒç”¨çš„æƒ…å†µï¼Œå¦åˆ™åº”ä½¿ç”¨getAccessibleMethod()å‡½æ•°è·å¾—Methodååå¤è°ƒç”¨. åŒæ—¶åŒ¹é…æ–¹æ³•å+å‚æ•°ç±»å‹ï¼Œ
 	 */
 	public static Object invokeMethod(final Object obj, final String methodName, final Class<?>[] parameterTypes,
 			final Object[] args) {
@@ -95,8 +95,8 @@ public class Reflections {
 	}
 
 	/**
-	 * Ö±½Óµ÷ÓÃ¶ÔÏó·½·¨, ÎŞÊÓprivate/protectedĞŞÊÎ·û£¬ ÓÃÓÚÒ»´ÎĞÔµ÷ÓÃµÄÇé¿ö£¬·ñÔòÓ¦Ê¹ÓÃgetAccessibleMethodByName()º¯Êı»ñµÃMethodºó·´¸´µ÷ÓÃ.
-	 * Ö»Æ¥Åäº¯ÊıÃû£¬Èç¹ûÓĞ¶à¸öÍ¬Ãûº¯Êıµ÷ÓÃµÚÒ»¸ö¡£
+	 * ç›´æ¥è°ƒç”¨å¯¹è±¡æ–¹æ³•, æ— è§†private/protectedä¿®é¥°ç¬¦ï¼Œ ç”¨äºä¸€æ¬¡æ€§è°ƒç”¨çš„æƒ…å†µï¼Œå¦åˆ™åº”ä½¿ç”¨getAccessibleMethodByName()å‡½æ•°è·å¾—Methodååå¤è°ƒç”¨.
+	 * åªåŒ¹é…å‡½æ•°åï¼Œå¦‚æœæœ‰å¤šä¸ªåŒåå‡½æ•°è°ƒç”¨ç¬¬ä¸€ä¸ªã€‚
 	 */
 	public static Object invokeMethodByName(final Object obj, final String methodName, final Object[] args) {
 		Method method = getAccessibleMethodByName(obj, methodName);
@@ -112,9 +112,9 @@ public class Reflections {
 	}
 
 	/**
-	 * Ñ­»·ÏòÉÏ×ªĞÍ, »ñÈ¡¶ÔÏóµÄDeclaredField, ²¢Ç¿ÖÆÉèÖÃÎª¿É·ÃÎÊ.
+	 * å¾ªç¯å‘ä¸Šè½¬å‹, è·å–å¯¹è±¡çš„DeclaredField, å¹¶å¼ºåˆ¶è®¾ç½®ä¸ºå¯è®¿é—®.
 	 * 
-	 * ÈçÏòÉÏ×ªĞÍµ½ObjectÈÔÎŞ·¨ÕÒµ½, ·µ»Ønull.
+	 * å¦‚å‘ä¸Šè½¬å‹åˆ°Objectä»æ— æ³•æ‰¾åˆ°, è¿”å›null.
 	 */
 	public static Field getAccessibleField(final Object obj, final String fieldName) {
 		Validate.notNull(obj, "object can't be null");
@@ -126,16 +126,16 @@ public class Reflections {
 				makeAccessible(field);
 				return field;
 			} catch (NoSuchFieldException e) {// NOSONAR
-				// Field²»ÔÚµ±Ç°Àà¶¨Òå,¼ÌĞøÏòÉÏ×ªĞÍ
+				// Fieldä¸åœ¨å½“å‰ç±»å®šä¹‰,ç»§ç»­å‘ä¸Šè½¬å‹
 			}
 		}
 		return null;
 	}
 
 	/**
-	 * Ñ­»·ÏòÉÏ×ªĞÍ, »ñÈ¡¶ÔÏóµÄDeclaredMethod,²¢Ç¿ÖÆÉèÖÃÎª¿É·ÃÎÊ. ÈçÏòÉÏ×ªĞÍµ½ObjectÈÔÎŞ·¨ÕÒµ½, ·µ»Ønull. Æ¥Åäº¯ÊıÃû+²ÎÊıÀàĞÍ¡£
+	 * å¾ªç¯å‘ä¸Šè½¬å‹, è·å–å¯¹è±¡çš„DeclaredMethod,å¹¶å¼ºåˆ¶è®¾ç½®ä¸ºå¯è®¿é—®. å¦‚å‘ä¸Šè½¬å‹åˆ°Objectä»æ— æ³•æ‰¾åˆ°, è¿”å›null. åŒ¹é…å‡½æ•°å+å‚æ•°ç±»å‹ã€‚
 	 * 
-	 * ÓÃÓÚ·½·¨ĞèÒª±»¶à´Îµ÷ÓÃµÄÇé¿ö. ÏÈÊ¹ÓÃ±¾º¯ÊıÏÈÈ¡µÃMethod,È»ºóµ÷ÓÃMethod.invoke(Object obj, Object... args)
+	 * ç”¨äºæ–¹æ³•éœ€è¦è¢«å¤šæ¬¡è°ƒç”¨çš„æƒ…å†µ. å…ˆä½¿ç”¨æœ¬å‡½æ•°å…ˆå–å¾—Method,ç„¶åè°ƒç”¨Method.invoke(Object obj, Object... args)
 	 */
 	public static Method getAccessibleMethod(final Object obj, final String methodName,
 			final Class<?>... parameterTypes) {
@@ -149,16 +149,16 @@ public class Reflections {
 				makeAccessible(method);
 				return method;
 			} catch (NoSuchMethodException e) {
-				// Method²»ÔÚµ±Ç°Àà¶¨Òå,¼ÌĞøÏòÉÏ×ªĞÍ
+				// Methodä¸åœ¨å½“å‰ç±»å®šä¹‰,ç»§ç»­å‘ä¸Šè½¬å‹
 			}
 		}
 		return null;
 	}
 
 	/**
-	 * Ñ­»·ÏòÉÏ×ªĞÍ, »ñÈ¡¶ÔÏóµÄDeclaredMethod,²¢Ç¿ÖÆÉèÖÃÎª¿É·ÃÎÊ. ÈçÏòÉÏ×ªĞÍµ½ObjectÈÔÎŞ·¨ÕÒµ½, ·µ»Ønull. Ö»Æ¥Åäº¯ÊıÃû¡£
+	 * å¾ªç¯å‘ä¸Šè½¬å‹, è·å–å¯¹è±¡çš„DeclaredMethod,å¹¶å¼ºåˆ¶è®¾ç½®ä¸ºå¯è®¿é—®. å¦‚å‘ä¸Šè½¬å‹åˆ°Objectä»æ— æ³•æ‰¾åˆ°, è¿”å›null. åªåŒ¹é…å‡½æ•°åã€‚
 	 * 
-	 * ÓÃÓÚ·½·¨ĞèÒª±»¶à´Îµ÷ÓÃµÄÇé¿ö. ÏÈÊ¹ÓÃ±¾º¯ÊıÏÈÈ¡µÃMethod,È»ºóµ÷ÓÃMethod.invoke(Object obj, Object... args)
+	 * ç”¨äºæ–¹æ³•éœ€è¦è¢«å¤šæ¬¡è°ƒç”¨çš„æƒ…å†µ. å…ˆä½¿ç”¨æœ¬å‡½æ•°å…ˆå–å¾—Method,ç„¶åè°ƒç”¨Method.invoke(Object obj, Object... args)
 	 */
 	public static Method getAccessibleMethodByName(final Object obj, final String methodName) {
 		Validate.notNull(obj, "object can't be null");
@@ -178,7 +178,7 @@ public class Reflections {
 	}
 
 	/**
-	 * ¸Ä±äprivate/protectedµÄ·½·¨Îªpublic£¬¾¡Á¿²»µ÷ÓÃÊµ¼Ê¸Ä¶¯µÄÓï¾ä£¬±ÜÃâJDKµÄSecurityManager±§Ô¹¡£
+	 * æ”¹å˜private/protectedçš„æ–¹æ³•ä¸ºpublicï¼Œå°½é‡ä¸è°ƒç”¨å®é™…æ”¹åŠ¨çš„è¯­å¥ï¼Œé¿å…JDKçš„SecurityManageræŠ±æ€¨ã€‚
 	 */
 	public static void makeAccessible(Method method) {
 		if ((!Modifier.isPublic(method.getModifiers()) || !Modifier.isPublic(method.getDeclaringClass().getModifiers()))
@@ -188,7 +188,7 @@ public class Reflections {
 	}
 
 	/**
-	 * ¸Ä±äprivate/protectedµÄ³ÉÔ±±äÁ¿Îªpublic£¬¾¡Á¿²»µ÷ÓÃÊµ¼Ê¸Ä¶¯µÄÓï¾ä£¬±ÜÃâJDKµÄSecurityManager±§Ô¹¡£
+	 * æ”¹å˜private/protectedçš„æˆå‘˜å˜é‡ä¸ºpublicï¼Œå°½é‡ä¸è°ƒç”¨å®é™…æ”¹åŠ¨çš„è¯­å¥ï¼Œé¿å…JDKçš„SecurityManageræŠ±æ€¨ã€‚
 	 */
 	public static void makeAccessible(Field field) {
 		if ((!Modifier.isPublic(field.getModifiers()) || !Modifier.isPublic(field.getDeclaringClass().getModifiers())
@@ -198,7 +198,7 @@ public class Reflections {
 	}
 
 	/**
-	 * Í¨¹ı·´Éä, »ñµÃClass¶¨ÒåÖĞÉùÃ÷µÄ·ºĞÍ²ÎÊıµÄÀàĞÍ, ×¢Òâ·ºĞÍ±ØĞë¶¨ÒåÔÚ¸¸Àà´¦ ÈçÎŞ·¨ÕÒµ½, ·µ»ØObject.class. eg. public UserDao extends HibernateDao<User>
+	 * é€šè¿‡åå°„, è·å¾—Classå®šä¹‰ä¸­å£°æ˜çš„æ³›å‹å‚æ•°çš„ç±»å‹, æ³¨æ„æ³›å‹å¿…é¡»å®šä¹‰åœ¨çˆ¶ç±»å¤„ å¦‚æ— æ³•æ‰¾åˆ°, è¿”å›Object.class. eg. public UserDao extends HibernateDao<User>
 	 * 
 	 * @param clazz The class to introspect
 	 * @return the first generic declaration, or Object.class if cannot be determined
@@ -208,9 +208,9 @@ public class Reflections {
 	}
 
 	/**
-	 * Í¨¹ı·´Éä, »ñµÃClass¶¨ÒåÖĞÉùÃ÷µÄ¸¸ÀàµÄ·ºĞÍ²ÎÊıµÄÀàĞÍ. ÈçÎŞ·¨ÕÒµ½, ·µ»ØObject.class.
+	 * é€šè¿‡åå°„, è·å¾—Classå®šä¹‰ä¸­å£°æ˜çš„çˆ¶ç±»çš„æ³›å‹å‚æ•°çš„ç±»å‹. å¦‚æ— æ³•æ‰¾åˆ°, è¿”å›Object.class.
 	 * 
-	 * Èçpublic UserDao extends HibernateDao<User,Long>
+	 * å¦‚public UserDao extends HibernateDao<User,Long>
 	 * 
 	 * @param clazz clazz The class to introspect
 	 * @param index the Index of the generic ddeclaration,start from 0.
@@ -241,7 +241,7 @@ public class Reflections {
 	}
 
 	/**
-	 * »ñÈ¡CGLib´¦Àí¹ıºóµÄÊµÌåµÄÔ­Àà.
+	 * è·å–CGLibå¤„ç†è¿‡åçš„å®ä½“çš„åŸç±».
 	 */
 	public static Class<?> getUserClass(Object instance) {
 		Validate.notNull(instance, "Instance must not be null");
@@ -257,7 +257,7 @@ public class Reflections {
 	}
 
 	/**
-	 * ½«·´ÉäÊ±µÄchecked exception×ª»»Îªunchecked exception.
+	 * å°†åå°„æ—¶çš„checked exceptionè½¬æ¢ä¸ºunchecked exception.
 	 */
 	public static RuntimeException convertReflectionExceptionToUnchecked(Exception e) {
 		if ((e instanceof IllegalAccessException) || (e instanceof IllegalArgumentException)
